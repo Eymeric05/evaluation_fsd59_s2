@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  .card
+    .card-body.p-5
+      .text-center.mb-4
+        i.fas.fa-tachometer-alt.fa-3x.text-success.mb-3
+        h2.h4.mb-0 Dashboard
+        p.text-muted Bienvenue dans votre espace personnel
+
+      .row
+        .col-md-6.mb-4
+          .card.border-0.bg-light
+            .card-body.text-center
+              i.fas.fa-user.fa-2x.text-primary.mb-3
+              h5.card-title Informations personnelles
+              p.card-text
+                strong Nom complet : 
+                | #{user.firstName} #{user.lastName}
+              p.card-text
+                strong Email : 
+                | #{user.email}
+              p.card-text
+                strong Rôle : 
+                span.badge.bg-primary #{user.role}
+        
+        .col-md-6.mb-4
+          .card.border-0.bg-light
+            .card-body.text-center
+              i.fas.fa-calendar.fa-2x.text-info.mb-3
+              h5.card-title Membre depuis
+              p.card-text #{user.createdAt.toLocaleDateString('fr-FR')}
+      
+      .row.mt-4
+        .col-12
+          .card.border-0.bg-light
+            .card-body
+              h5.card-title
+                i.fas.fa-cog.me-2
+                | Actions disponibles
+              .d-grid.gap-2.d-md-flex.justify-content-md-start
+                if user.role === 'admin'
+                  a.btn.btn-outline-primary.me-md-2(href="/admin")
+                    i.fas.fa-cog.me-2
+                    | Administration
+                a.btn.btn-outline-secondary(href="/logout")
+                  i.fas.fa-sign-out-alt.me-2
+                  | Déconnexion

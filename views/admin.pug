@@ -1,0 +1,84 @@
+extends layout
+
+block content
+  .card
+    .card-body.p-5
+      .text-center.mb-4
+        i.fas.fa-cog.fa-3x.text-warning.mb-3
+        h2.h4.mb-0 Administration
+        p.text-muted Gestion des utilisateurs
+
+      .row.mb-4
+        .col-12
+          .alert.alert-info
+            i.fas.fa-info-circle.me-2
+            | Vous êtes connecté en tant qu'administrateur
+
+      .row
+        .col-12
+          .card.border-0.bg-light
+            .card-body
+              h5.card-title.mb-4
+                i.fas.fa-users.me-2
+                | Liste des utilisateurs
+              
+              if users && users.length > 0
+                .table-responsive
+                  table.table.table-hover
+                    thead.table-dark
+                      tr
+                        th Prénom
+                        th Nom
+                        th Email
+                        th Rôle
+                        th Date d'inscription
+                    tbody
+                      each user in users
+                        tr
+                          td #{user.firstName}
+                          td #{user.lastName}
+                          td #{user.email}
+                          td
+                            if user.role === 'admin'
+                              span.badge.bg-danger Admin
+                            else
+                              span.badge.bg-primary User
+                          td #{user.createdAt.toLocaleDateString('fr-FR')}
+              else
+                .text-center.py-4
+                  i.fas.fa-users.fa-3x.text-muted.mb-3
+                  p.text-muted Aucun utilisateur trouvé
+
+      .row.mt-4
+        .col-12
+          .card.border-0.bg-light
+            .card-body
+              h5.card-title
+                i.fas.fa-chart-bar.me-2
+                | Statistiques
+              .row.text-center
+                .col-md-4
+                  .p-3
+                    i.fas.fa-users.fa-2x.text-primary.mb-2
+                    h4 #{users ? users.length : 0}
+                    p.text-muted Total utilisateurs
+                .col-md-4
+                  .p-3
+                    i.fas.fa-user.fa-2x.text-success.mb-2
+                    h4 #{users ? users.filter(u => u.role === 'user').length : 0}
+                    p.text-muted Utilisateurs
+                .col-md-4
+                  .p-3
+                    i.fas.fa-crown.fa-2x.text-warning.mb-2
+                    h4 #{users ? users.filter(u => u.role === 'admin').length : 0}
+                    p.text-muted Administrateurs
+
+      .row.mt-4
+        .col-12
+          .d-grid.gap-2.d-md-flex.justify-content-md-start
+            a.btn.btn-outline-primary.me-md-2(href="/dashboard")
+              i.fas.fa-arrow-left.me-2
+              | Retour au Dashboard
+            a.btn.btn-outline-secondary(href="/logout")
+              i.fas.fa-sign-out-alt.me-2
+              | Déconnexion

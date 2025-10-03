@@ -1,0 +1,81 @@
+extends layout
+
+block content
+  .card
+    .card-body.p-5
+      .text-center.mb-4
+        i.fas.fa-user-plus.fa-3x.text-primary.mb-3
+        h2.h4.mb-0 Créer un compte
+        p.text-muted Remplissez le formulaire ci-dessous pour vous inscrire
+
+      form(action="/register", method="POST")
+        .row
+          .col-md-6.mb-3
+            label.form-label(for="firstName")
+              i.fas.fa-user.me-1
+              | Prénom
+            input.form-control(
+              type="text", 
+              id="firstName", 
+              name="firstName", 
+              value=formData.firstName || "",
+              required
+            )
+          
+          .col-md-6.mb-3
+            label.form-label(for="lastName")
+              i.fas.fa-user.me-1
+              | Nom
+            input.form-control(
+              type="text", 
+              id="lastName", 
+              name="lastName", 
+              value=formData.lastName || "",
+              required
+            )
+        
+        .mb-3
+          label.form-label(for="email")
+            i.fas.fa-envelope.me-1
+            | Adresse email
+          input.form-control(
+            type="email", 
+            id="email", 
+            name="email", 
+            value=formData.email || "",
+            required
+          )
+        
+        .mb-3
+          label.form-label(for="password")
+            i.fas.fa-lock.me-1
+            | Mot de passe
+          input.form-control(
+            type="password", 
+            id="password", 
+            name="password", 
+            required
+          )
+          .form-text
+            | Le mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 chiffre et 1 caractère spécial
+        
+        .mb-4
+          label.form-label(for="confirmPassword")
+            i.fas.fa-lock.me-1
+            | Confirmer le mot de passe
+          input.form-control(
+            type="password", 
+            id="confirmPassword", 
+            name="confirmPassword", 
+            required
+          )
+        
+        .d-grid
+          button.btn.btn-primary.btn-lg(type="submit")
+            i.fas.fa-user-plus.me-2
+            | Créer mon compte
+        
+        .text-center.mt-4
+          p.mb-0
+            | Déjà un compte ? 
+            a.text-decoration-none(href="/login") Se connecter

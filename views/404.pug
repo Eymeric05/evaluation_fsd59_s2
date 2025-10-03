@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .card
+    .card-body.p-5.text-center
+      i.fas.fa-exclamation-triangle.fa-5x.text-warning.mb-4
+      h1.h2.mb-3 #{title}
+      p.lead.mb-4 #{message}
+      a.btn.btn-primary(href="/")
+        i.fas.fa-home.me-2
+        | Retour à l'accueil
