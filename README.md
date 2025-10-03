@@ -155,10 +155,3 @@ Les mots de passe doivent contenir :
 3. Configurez HTTPS pour les sessions sécurisées
 4. Utilisez un gestionnaire de processus comme PM2
 
-## 📞 Support
-
-Pour toute question ou problème, consultez la documentation ou contactez l'équipe de développement.
-
----
-
-**Développé avec ❤️ pour l'évaluation FSD59 S2**
